@@ -1,0 +1,37 @@
+body {
+  background-color: #E0E0E0;
+  margin: 0px;
+  font-family: sans-serif;
+}
+#title-bar {
+  padding: 20px 0px 10px 80px;
+  color: gray;
+}
+.big-title {
+  /* text-align:center; */
+  font-size: 40pt;
+  font-family: sans-serif;
+  font-weight: 200;
+  border-right: 2px solid gray;
+  padding-right: 25px;
+}
+.big-title a:hover {
+  text-decoration: none;
+}
+.small-bar {
+  vertical-align: middle;
+  display: inline-block;
+  height: 40px;
+  padding-left: 10px;
+}
+a {
+  color:gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: underline;
+}
+.navbar-link {
+  padding: 10px;
+}
