@@ -5,6 +5,44 @@
   </title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="comic.css">
+  <script>
+    var page = 1;
+    var maxPage = 4;
+    var minPage = 1;
+    // http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript
+    function get(name) {
+      if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+    }
+    function load() {
+      var urlPage = get('p');
+      if (!!urlPage) {
+        page = urlPage;
+      }
+
+      showCurrentPage();
+    }
+    function updateUrl() {
+      location.search = "p=" + page;
+    }
+    function showCurrentPage() {
+      var img = document.getElementById("shown-panel");
+      img.src = "./pages/panel" + page + ".png";
+    }
+    function nextPage() {
+      if (page + 1 <= maxPage) {
+        page++;
+        showCurrentPage();
+      }
+    }
+    function previousPage() {
+      if (page - 1 >= minPage) {
+        page--;
+        showCurrentPage();
+      }
+    }
+    window.onload = load;
+  </script>
 </head>
 <body>
   <div id="title-bar">
@@ -27,7 +65,7 @@
       </div></div></a>
   </div>
   <div id = "image-container">
-    <img src="./pages/panel1.png">
+    <img id = "shown-panel" src="./pages/panel1.png">
   </div>
   <div id = "bottom-button-row">
     <a class = "nav-button previous">
