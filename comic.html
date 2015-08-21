@@ -6,24 +6,39 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="comic.css">
   <script>
-    var page = 1;
+    var page;  // starts unset
     var maxPage = 4;
     var minPage = 1;
     // http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript
     function get(name) {
-      if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      if(name=(new RegExp('[#&]'+encodeURIComponent(name)+'=([^#]*)')).
+        exec(location.hash))
       return decodeURIComponent(name[1]);
     }
-    function load() {
-      var urlPage = get('p');
-      if (!!urlPage) {
-        page = urlPage;
+    function setup() {
+      var previousButtons = document.getElementsByClassName("previous");
+      for (var i = 0; i < previousButtons.length; i++) {
+        previousButtons.item(i).onclick = previousPage;
       }
-
+      var nextButtons = document.getElementsByClassName("next");
+      for (var i = 0; i < nextButtons.length; i++) {
+        nextButtons.item(i).onclick = nextPage;
+      }
+      loadFromUrl();
+    }
+    function loadFromUrl() {
+      var urlPage = parseInt(get('p'), 10);
+      if (!urlPage) {
+        urlPage = 1;
+      }
+      if (page == urlPage) {
+        return;
+      }
+      page = urlPage;
       showCurrentPage();
     }
     function updateUrl() {
-      location.search = "p=" + page;
+      location.hash = "p=" + page;
     }
     function showCurrentPage() {
       var img = document.getElementById("shown-panel");
@@ -32,16 +47,19 @@
     function nextPage() {
       if (page + 1 <= maxPage) {
         page++;
+        updateUrl();
         showCurrentPage();
       }
     }
     function previousPage() {
       if (page - 1 >= minPage) {
         page--;
+        updateUrl();
         showCurrentPage();
       }
     }
-    window.onload = load;
+    window.onload = setup;
+    window.onpopstate = loadFromUrl;
   </script>
 </head>
 <body>
