@@ -1,0 +1,3 @@
+# ignore all image files, those should be ftp'd.
+*.png
+*.jpg
