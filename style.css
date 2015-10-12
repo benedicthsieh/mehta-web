@@ -4,25 +4,47 @@ body {
   font-family: sans-serif;
 }
 #title-bar {
-  padding: 20px 0px 10px 80px;
+  padding: 20px 20px 0px 40px;*/
   color: gray;
+  /* height: 40px; */
+  padding-top: 20px;
 }
 .big-title {
-  /* text-align:center; */
-  font-size: 40pt;
+  font-size: 32pt;
   font-family: sans-serif;
   font-weight: 200;
   border-right: 2px solid gray;
   padding-right: 25px;
+  height: 70px;
+}
+@media (max-width: 457px) {
+  #title-bar {
+    text-align: center;
+  }
+  .big-title {
+    border-right: none;
+    width: 100%;
+    display: inline-block;
+  }
+  .small-bar {
+    padding-top: 20px;
+  }
 }
 .big-title a:hover {
   text-decoration: none;
 }
 .small-bar {
-  vertical-align: middle;
+  /*vertical-align: middle;*/
+  /** TODO -- all methods of centering seem to
+  mess with the natural height, making the font very
+  small on mobile. */
   display: inline-block;
-  height: 40px;
+  font-size: 100%;
+  /*height: 40px;*/
   padding-left: 10px;
+  position: relative;
+  top: -40%;
+  transform: translateY(-50%);
 }
 a {
   color:gray;
@@ -41,4 +63,8 @@ a:hover {
 }
 #content {
   padding: 10px 20% 0 20%;
+  font-size: 12pt;
+}
+#content p {
+  margin: 1.5em 0;
 }
