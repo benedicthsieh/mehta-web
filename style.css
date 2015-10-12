@@ -35,3 +35,10 @@ a:hover {
 .navbar-link {
   padding: 10px;
 }
+.offsite {
+  height: 15px;
+  width: 15px;
+}
+#content {
+  padding: 10px 20% 0 20%;
+}
