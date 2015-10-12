@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="comic.css">
   <script>
     var page;  // starts unset
-    var maxPage = 4;
+    var maxPage = 13;
     var minPage = 1;
     // http://stackoverflow.com/questions/831030/how-to-get-get-request-parameters-in-javascript
     function get(name) {
@@ -42,7 +42,8 @@
     }
     function showCurrentPage() {
       var img = document.getElementById("shown-panel");
-      img.src = "./pages/panel" + page + ".png";
+      var paddedPage = ("0" + page).substr(-2,2);
+      img.src = "./pages/pg" + paddedPage + ".jpg";
     }
     function nextPage() {
       if (page + 1 <= maxPage) {
