@@ -43,8 +43,8 @@
       location.hash = "p=" + page;
     }
     function showMessageInsteadOfPanel(toggle) {
-      var messageState = toggle ? "block" : "none";
-      var panelState = !toggle ? "block" : "none";
+      var messageState = toggle ? "inline-block" : "none";
+      var panelState = !toggle ? "inline-block" : "none";
       document.getElementById("message").style.display = messageState;
       document.getElementById("shown-panel").style.display = panelState;
     }
@@ -104,7 +104,7 @@
       Thanks for reading our preview. If you liked what you saw, please check out our
       Kickstarter for more, and spread the word to your friends!
     </div>
-    <img id = "shown-panel" src="./pages/panel1.jpg">
+    <img id = "shown-panel" src="./pages/panel01.jpg">
   </div>
   <div id = "bottom-button-row">
     <a class = "nav-button previous">
