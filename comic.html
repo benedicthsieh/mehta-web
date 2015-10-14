@@ -42,17 +42,31 @@
     function updateUrl() {
       location.hash = "p=" + page;
     }
+    function showMessageInsteadOfPanel(toggle) {
+      var messageState = toggle ? "block" : "none";
+      var panelState = !toggle ? "block" : "none";
+      document.getElementById("message").style.display = messageState;
+      document.getElementById("shown-panel").style.display = panelState;
+    }
     function showCurrentPage() {
-      var img = document.getElementById("shown-panel");
-      var paddedPage = ("0" + page).substr(-2,2);
-      img.src = "./pages/pg" + paddedPage + ".jpg";
+      if (page <= maxPage) {
+        showMessageInsteadOfPanel(false);
+        var img = document.getElementById("shown-panel");
+        var paddedPage = ("0" + page).substr(-2,2);
+        img.src = "./pages/pg" + paddedPage + ".jpg";
+      } else {
+        showMessageInsteadOfPanel(true);
+      }
     }
     function nextPage() {
-      if (page + 1 <= maxPage) {
-        page++;
-        updateUrl();
-        showCurrentPage();
+      page++;
+      if (page > maxPage) {
+        // Let the user scroll one past and see the virtual 'message' page,
+        // but no point in overscrolling past that.
+        page = maxPage + 1;
       }
+      updateUrl();
+      showCurrentPage();
     }
     function previousPage() {
       if (page - 1 >= minPage) {
@@ -86,7 +100,11 @@
       </div></div></a>
   </div>
   <div id = "image-container">
-    <img id = "shown-panel" src="./pages/panel1.png">
+    <div id = "message">
+      Thanks for reading our preview. If you liked what you saw, please check out our
+      Kickstarter for more, and spread the word to your friends!
+    </div>
+    <img id = "shown-panel" src="./pages/panel1.jpg">
   </div>
   <div id = "bottom-button-row">
     <a class = "nav-button previous">
